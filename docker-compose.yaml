@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  web:
+    build: .
+    container_name: karatechambly2026ffk
+    ports:
+      - "8109:80"
+    restart: unless-stopped

@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Championnat de France Karaté Seniors 2026 | Fédération Française de Karaté</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --ffk-red: #E30613;
+            --ffk-blue: #003399;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: white;
+            color: #1a1a1a;
+        }
+        
+        .font-display {
+            font-family: 'Oswald', sans-serif;
+        }
+        
+        /* Header FFK */
+        .ffk-header {
+            background: linear-gradient(135deg, var(--ffk-red) 0%, #a30510 100%);
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+        
+        /* Cards */
+        .ffk-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .ffk-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .ffk-card-header {
+            background: linear-gradient(135deg, var(--ffk-red) 0%, var(--ffk-blue) 100%);
+            color: white;
+            padding: 20px;
+        }
+        
+        /* Boutons */
+        .ffk-btn {
+            background: linear-gradient(135deg, var(--ffk-red) 0%, #a30510 100%);
+            color: white;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .ffk-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(227, 6, 19, 0.4);
+        }
+        
+        .ffk-btn-outline {
+            background: transparent;
+            border: 3px solid white;
+            color: white;
+        }
+        
+        .ffk-btn-outline:hover {
+            background: white;
+            color: var(--ffk-red);
+        }
+        
+        /* Badge */
+        .ffk-badge {
+            background: linear-gradient(135deg, var(--ffk-blue) 0%, var(--ffk-red) 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Timeline */
+        .timeline-item {
+            position: relative;
+            padding-left: 40px;
+            padding-bottom: 30px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--ffk-red) 0%, var(--ffk-blue) 100%);
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--ffk-red);
+            border: 3px solid white;
+        }
+        
+        /* Photos */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .photo-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            aspect-ratio: 16/10;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .photo-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Stats */
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--ffk-red) 0%, var(--ffk-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Youtube Video Container */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* Section divider */
+        .section-gradient {
+            background: linear-gradient(90deg, var(--ffk-red) 0%, var(--ffk-blue) 50%, var(--ffk-red) 100%);
+            height: 4px;
+        }
+        
+        /* Text colors */
+        .text-ffk-red { color: var(--ffk-red); }
+        .text-ffk-blue { color: var(--ffk-blue); }
+        
+        /* Footer gradient */
+        .ffk-footer {
+            background: linear-gradient(135deg, var(--ffk-blue) 0%, #002266 100%);
+        }
+        
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="ffk-header text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center">
+                        <span class="text-3xl">🥋</span>
+                    </div>
+                    <div>
+                        <p class="text-sm opacity-80">Fédération Française de Karaté</p>
+                        <h1 class="font-display text-2xl md:text-3xl font-bold">Championnat de France</h1>
+                        <p class="text-lg font-semibold">Seniors - Chambly 2026</p>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center gap-4 mt-4 md:mt-0">
+                    <span class="ffk-badge">
+                        <i data-lucide="trophy" class="w-4 h-4"></i>
+                        Événement Fédéral
+                    </span>
+                    <span class="ffk-badge" style="background: var(--ffk-blue);">
+                        <i data-lucide="map-pin" class="w-4 h-4"></i>
+                        Oise (60)
+                    </span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section with White Background -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 text-center">
+            <div class="inline-block mb-6 px-6 py-2 border-2 border-red-600 rounded-full">
+                <span class="text-red-600 font-semibold">4 & 5 Avril 2026</span>
+            </div>
+            
+            <h2 class="font-display text-5xl md:text-7xl font-black mb-6 leading-tight text-gray-900">
+                CHAMBLY
+                <span class="text-ffk-red">2026</span>
+            </h2>
+            
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-10">
+                Le plus grand rendez-vous du karaté français. Plus de 400 athletes,
+                2 disciplines, 1 seule glory.
+            </p>
+            
+            <div class="flex flex-wrap justify-center gap-6">
+                <a href="#inscriptions" class="ffk-btn">
+                    <i data-lucide="clipboard-list" class="w-5 h-5 inline mr-2"></i>
+                    S'inscrire
+                </a>
+                <a href="#programme" class="ffk-btn ffk-btn-outline" style="border-color: #E30613; color: #E30613;">
+                    <i data-lucide="calendar" class="w-5 h-5 inline mr-2"></i>
+                    Programme
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video YouTube Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="section-gradient mb-12"></div>
+            
+            <div class="text-center mb-8">
+                <span class="ffk-badge mb-4">VIDÉO</span>
+                <h2 class="font-display text-4xl font-bold text-gray-900 mb-4">
+                    Teaser 2026
+                </h2>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="video-container">
+                    <iframe 
+                        src="https://www.youtube.com/embed/vnYiRwlKdj0" 
+                        title="Championnat de France Karaté 2026"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <div class="stat-number">4-5</div>
+                    <p class="text-gray-500">Avril 2026</p>
+                </div>
+                <div>
+                    <div class="stat-number">400+</div>
+                    <p class="text-gray-500">Athlètes</p>
+                </div>
+                <div>
+                    <div class="stat-number">2</div>
+                    <p class="text-gray-500">Disciplines</p>
+                </div>
+                <div>
+                    <div class="stat-number">8</div>
+                    <p class="text-gray-500">Titres en jeu</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="section-gradient mb-12"></div>
+            
+            <div class="text-center mb-12">
+                <span class="ffk-badge mb-4">L'ÉVÉNEMENT</span>
+                <h2 class="font-display text-4xl md:text-5xl font-bold mb-4 text-gray-900">
+                    Le Championnat de France
+                </h2>
+                <p class="text-gray-500 max-w-2xl mx-auto">
+                    Révélez les champions de demain lors de la compétition nationale la plus prestigieuse
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Kumite -->
+                <div class="ffk-card">
+                    <div class="ffk-card-header">
+                        <h3 class="font-display text-2xl font-bold flex items-center gap-3">
+                            <i data-lucide="swords" class="w-8 h-8"></i>
+                            Kumite (Combat)
+                        </h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">Les meilleurs combattants de France s'affrontent dans des phases de poules qualificatives suivies d'éliminatoires jusqu'à la finale.</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-center gap-3">
+                                <i data-lucide="check" class="w-5 h-5 text-green-500 flex-shrink-0"></i>
+                                <span>Catégories de poids masculines et féminines</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i data-lucide="check" class="w-5 h-5 text-green-500 flex-shrink-0"></i>
+                                <span>Arbitrage fédéral agréé</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i data-lucide="check" class="w-5 h-5 text-green-500 flex-shrink-0"></i>
+                                <span>Surface de compétition officielle</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Kata -->
+                <div class="ffk-card">
+                    <div class="ffk-card-header" style="background: linear-gradient(135deg, #003399 0%, #1a1a1a 100%);">
+                        <h3 class="font-display text-2xl font-bold flex items-center gap-3">
+                            <i data-lucide="waves" class="w-8 h-8"></i>
+                            Kata (Forme)
+                        </h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">Les athletes démontrent leur maîtrise technique à travers des enchaînements traditionnels face à un jury d'experts.</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-center gap-3">
+                                <i data-lucide="check" class="w-5 h-5 text-green-500 flex-shrink-0"></i>
+                                <span>Évaluation sur critères techniques et athlétiques</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i data-lucide="check" class="w-5 h-5 text-green-500 flex-shrink-0"></i>
+                                <span>Style libre et imposé</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i data-lucide="check" class="w-5 h-5 text-green-500 flex-shrink-0"></i>
+                                <span>Classement individuel</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Organizers -->
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-center items-center gap-12">
+                <div class="text-center">
+                    <p class="text-sm text-gray-500 mb-2">Organisé par</p>
+                    <div class="bg-gray-100 px-8 py-4 rounded-lg border border-gray-200">
+                        <p class="font-bold text-xl text-gray-900">Fédération Française de Karaté</p>
+                        <p class="text-sm text-gray-500">et Disciplines Associées</p>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <p class="text-sm text-gray-500 mb-2">Club hôte</p>
+                    <div class="bg-gray-100 px-8 py-4 rounded-lg border border-gray-200">
+                        <p class="font-bold text-xl text-gray-900">Karaté Club de Chambly</p>
+                        <p class="text-sm text-gray-500">Le Locomotive Camblysien</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program -->
+    <section class="py-20 bg-white" id="programme">
+        <div class="container mx-auto px-4">
+            <div class="section-gradient mb-12"></div>
+            
+            <div class="text-center mb-12">
+                <span class="ffk-badge mb-4">LE PROGRAMME</span>
+                <h2 class="font-display text-4xl md:text-5xl font-bold mb-4 text-gray-900">
+                    Dates & Horaires
+                </h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Day 1 -->
+                <div class="ffk-card">
+                    <div class="ffk-card-header">
+                        <h3 class="font-display text-2xl font-bold flex items-center gap-3">
+                            <i data-lucide="sun" class="w-6 h-6"></i>
+                            Samedi 4 Avril
+                        </h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="timeline-item">
+                            <div class="font-bold text-lg text-red-600">08:00</div>
+                            <p class="font-semibold text-gray-800">Ouverture du gymnase</p>
+                            <p class="text-gray-500 text-sm">Accueil des délégations</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="font-bold text-lg text-red-600">09:30</div>
+                            <p class="font-semibold text-gray-800">Cérémonie d'ouverture</p>
+                            <p class="text-gray-500 text-sm">Discours officiels</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="font-bold text-lg text-red-600">10:00</div>
+                            <p class="font-semibold text-gray-800">Début des compétitions</p>
+                            <p class="text-gray-500 text-sm">Kata & Combat - Phases de poules</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="font-bold text-lg text-red-600">12:00 - 14:00</div>
+                            <p class="font-semibold text-gray-800">Pause Déjeuner</p>
+                            <p class="text-gray-500 text-sm">Restauration sur place</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="font-bold text-lg text-red-600">14:00</div>
+                            <p class="font-semibold text-gray-800">Reprise des compétitions</p>
+                            <p class="text-gray-500 text-sm">Phases éliminatoires</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Day 2 -->
+                <div class="ffk-card">
+                    <div class="ffk-card-header" style="background: linear-gradient(135deg, #003399 0%, #1a1a1a 100%);">
+                        <h3 class="font-display text-2xl font-bold flex items-center gap-3">
+                            <i data-lucide="trophy" class="w-6 h-6"></i>
+                            Dimanche 5 Avril
+                        </h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="timeline-item">
+                            <div class="font-bold text-lg text-blue-700">08:30</div>
+                            <p class="font-semibold text-gray-800">Ouverture du gymnase</p>
+                            <p class="text-gray-500 text-sm">Finalistes au rendez-vous</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="font-bold text-lg text-blue-700">09:00</div>
+                            <p class="font-semibold text-gray-800">Finales Kata</p>
+                            <p class="text-gray-500 text-sm">Pronostics & Émotion</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="font-bold text-lg text-blue-700">11:00</div>
+                            <p class="font-semibold text-gray-800">Finales Combat</p>
+                            <p class="text-gray-500 text-sm">Les match-title tant attendus</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="font-bold text-lg text-blue-700">14:00</div>
+                            <p class="font-semibold text-gray-800">Cérémonie des médailles</p>
+                            <p class="text-gray-500 text-sm">Podium & hymnes</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="font-bold text-lg text-blue-700">15:30</div>
+                            <p class="font-semibold text-gray-800">Cérémonie de clôture</p>
+                            <p class="text-gray-500 text-sm">Remise des prix spéciaux</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photos Gallery -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="section-gradient mb-12"></div>
+            
+            <div class="text-center mb-12">
+                <span class="ffk-badge mb-4">2025</span>
+                <h2 class="font-display text-4xl md:text-5xl font-bold mb-4 text-gray-900">
+                    Éditions Précédentes
+                </h2>
+                <p class="text-gray-500">Revivez l'ambiance du Championnat de France</p>
+            </div>
+            
+            <div class="photo-grid">
+                <div class="photo-item">
+                    <img src="https://pbs.twimg.com/media/FuK6H4-XMAAs2g9?format=jpg&name=large" alt="Karaté Competition 1">
+                </div>
+                <div class="photo-item">
+                    <img src="https://pbs.twimg.com/media/FuK6H4-WwAAdy6r?format=jpg&name=large" alt="Karaté Competition 2">
+                </div>
+                <div class="photo-item">
+                    <img src="https://pbs.twimg.com/media/FuK6H4-XEAAuF2y?format=jpg&name=large" alt="Karaté Competition 3">
+                </div>
+                <div class="photo-item">
+                    <img src="https://pbs.twimg.com/media/FuK6H4-WAAAEfO6?format=jpg&name=large" alt="Karaté Competition 4">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Practical Info -->
+    <section class="py-20 bg-white" id="informations">
+        <div class="container mx-auto px-4">
+            <div class="section-gradient mb-12"></div>
+            
+            <div class="text-center mb-12">
+                <span class="ffk-badge mb-4">INFORMATIONS</span>
+                <h2 class="font-display text-4xl md:text-5xl font-bold mb-4 text-gray-900">
+                    Infos Pratiques
+                </h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="ffk-card">
+                    <div class="p-6 text-center">
+                        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="map-pin" class="w-8 h-8 text-red-600"></i>
+                        </div>
+                        <h3 class="font-display text-xl font-bold mb-3 text-gray-900">Lieu</h3>
+                        <p class="text-gray-600">
+                            <strong>Gymnase Intercommunal</strong><br>
+                            Rue du Stade<br>
+                            60530 Chambly
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="ffk-card">
+                    <div class="p-6 text-center">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="ticket" class="w-8 h-8 text-blue-600"></i>
+                        </div>
+                        <h3 class="font-display text-xl font-bold mb-3 text-gray-900">Entrée</h3>
+                        <p class="text-gray-600">
+                            <strong>8€</strong> (adulte)<br>
+                            Gratuit - de 12 ans<br>
+                            <span class="text-gray-500 text-sm">Paiement sur place</span>
+                        </p>
+                        <p class="text-green-600 text-sm mt-2">Buvette & restauration</p>
+                    </div>
+                </div>
+                
+                <div class="ffk-card">
+                    <div class="p-6 text-center">
+                        <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="phone" class="w-8 h-8 text-purple-600"></i>
+                        </div>
+                        <h3 class="font-display text-xl font-bold mb-3 text-gray-900">Contact</h3>
+                        <p class="text-gray-600">
+                            <strong>Karaté Club de Chambly</strong><br>
+                            karate.chambly@gmail.com<br>
+                            07 65 86 82 81
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registrations -->
+    <section class="py-20 bg-white" id="inscriptions">
+        <div class="container mx-auto px-4 text-center">
+            <div class="section-gradient mb-12"></div>
+            
+            <h2 class="font-display text-4xl md:text-5xl font-bold mb-6 text-gray-900">
+                Vous êtes Athlète ?
+            </h2>
+            <p class="text-xl text-gray-500 mb-8 max-w-2xl mx-auto">
+                Les inscriptions se font via la plateforme fédérale FFkarate avec votre compte Sikada.
+            </p>
+            
+            <div class="bg-gray-50 rounded-xl p-8 max-w-2xl mx-auto border border-gray-200">
+                <h3 class="font-display text-2xl font-bold mb-6 text-gray-900">Comment s'inscrire ?</h3>
+                
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
+                            <span class="text-red-600 font-bold">1</span>
+                        </div>
+                        <div class="text-left">
+                            <p class="font-semibold text-gray-800">Connectez-vous</p>
+                            <p class="text-sm text-gray-500">Via ffkcompetition.fr avec vos identifiants Sikada</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
+                            <span class="text-red-600 font-bold">2</span>
+                        </div>
+                        <div class="text-left">
+                            <p class="font-semibold text-gray-800">Sélectionnez l'épreuve</p>
+                            <p class="text-sm text-gray-500">Championnat de France Seniors - Chambly</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="https://ffkcompetition.fr" target="_blank" class="ffk-btn inline-flex items-center justify-center gap-2">
+                    <i data-lucide="external-link" class="w-5 h-5"></i>
+                    Accéder à FFkcompetition
+                </a>
+                <p class="text-gray-500 text-sm mt-4">Si vous n'avez pas de compte Sikada, contactez votre club.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="ffk-footer py-12 text-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-between items-center">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center">
+                            <span class="text-2xl">🥋</span>
+                        </div>
+                        <div>
+                            <p class="font-display text-xl font-bold">CHAMBLY 2026</p>
+                            <p class="text-sm opacity-80">Championnat de France Seniors</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-sm opacity-80">
+                    © 2026 Karaté Club de Chambly - Tous droits réservés
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
